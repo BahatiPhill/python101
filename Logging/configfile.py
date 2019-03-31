@@ -9,11 +9,11 @@ def create_configfile(path):
     
     #loggers section
     config.add_section("loggers")
-    config.set('loggers', 'keys', value='root')
+    config.set('loggers', 'keys', value='root, exampleApp')
 
     #handlers section
     config.add_section("handlers")
-    config.set('handlers', 'keys', value='fileHandler')
+    config.set('handlers', 'keys', value='fileHandler, consoleHandler')
 
 
     #formatter section
@@ -46,5 +46,12 @@ def create_configfile(path):
 
     #formatter_myFormatter section
     config.add_section("formatter_myFormatter")
-    config.set('formatter_myFormatter', 'format', value='root')
-    #config.set('formatter_myFormatter', 'format', value='root')
+    config.set('formatter_myFormatter', 'format', value='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+    #config.set('formatter_myFormatter', 'datefmt', value='root')
+
+    with open(path, 'w') as config_file:
+        config.write(config_file)
+
+
+if __name__ == '__main__':
+    create_configfile('loggersettings.conf')
